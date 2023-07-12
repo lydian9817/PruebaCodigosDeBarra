@@ -11,13 +11,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun HomeScreen() {
-    val viewModel = ViewModel()
-    val scanner = GmsBarcodeScanning.getClient(LocalContext.current)
+fun HomeScreen(
+    viewModel: ViewModel = viewModel()
+) {
+    val scanner = viewModel.crearScanner(LocalContext.current)
     val state = viewModel.state
 
     Log.i("barcodeValie", state.value.barcodeRawValue!!)
