@@ -1,6 +1,7 @@
 package com.example.pruebacodigosdebarra
 
 import android.content.Context
+import android.util.Log
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 
@@ -12,6 +13,9 @@ class ScannerRepo {
         var resultado: String? = ""
         scanner.startScan()
             .addOnSuccessListener { barcode ->
+                Log.e("Barcode", "code: "+ barcode.displayValue)
+                Log.e("Barcode", "Raw value: "+ barcode.rawValue)
+                Log.e("Barcode", "code type: "+ barcode.valueType)
                 resultado = barcode.rawValue
             }
             .addOnCanceledListener {
